@@ -2,7 +2,7 @@ class Style {
     constructor(style) {
         this.width = function(w) { return { style : "css", type : "width", width: w + "px" } };
         this.height = function(h) { return { style : "css", type : "height", height: h + "px" } };
-        //this.size = function(w, h) { return { style : "css", type : "size", width: w + "px", height: h + "px" } };
+        this.size = function(w, h) { return { style : "css", type : "size", width: w + "px", height: h + "px" } };
         this.position = function(_position) { return { style : "css", type : "position", position: _position } };
         this.display = function(_display) { return { style : "css", type : "display", display : _display } };
         this.padding = function(_padding) { return { style : "css", type : "padding", padding : _padding } };
