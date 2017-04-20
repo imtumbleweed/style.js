@@ -1,5 +1,8 @@
 class Style {
     constructor(style) {
+        this.width = function(w) { return { style : "css", type : "width", width: w + "px" } };
+        this.height = function(h) { return { style : "css", type : "height", height: h + "px" } };
+        //this.size = function(w, h) { return { style : "css", type : "size", width: w + "px", height: h + "px" } };
         this.position = function(_position) { return { style : "css", type : "position", position: _position } };
         this.display = function(_display) { return { style : "css", type : "display", display : _display } };
         this.padding = function(_padding) { return { style : "css", type : "padding", padding : _padding } };
@@ -11,6 +14,9 @@ class Style {
             var keys = {};
             for (var i=0;i<arguments.length; i++) {
                 if (arguments[i].style == "css") {
+                    if (arguments[i].type == "size") { keys.width = arguments[i].width; keys.height = arguments[i].height; }
+                    if (arguments[i].type == "width") keys.width = arguments[i].width;
+                    if (arguments[i].type == "height") keys.height = arguments[i].height;
                     if (arguments[i].type == "display") keys.display = arguments[i].display;
                     if (arguments[i].type == "position") keys.position = arguments[i].position;
                     if (arguments[i].type == "padding") keys.padding = arguments[i].padding + "px";
@@ -18,11 +24,7 @@ class Style {
                     if (arguments[i].type == "background") keys.background = arguments[i].background;
                     if (arguments[i].type == "color") keys.color = arguments[i].color;
                     if (arguments[i].type == "cursor") keys.cursor = arguments[i].cursorType;
-                    if (arguments[i].type == "font") {
-                        keys.color = arguments[i].color;
-                        keys.fontFamily = 'courier';//arguments[i].fontFamily;
-                        keys.fontSize = arguments[i].fontSize + 'px';
-                    }
+                    if (arguments[i].type == "font") { keys.color = arguments[i].color; keys.fontFamily = arguments[i].fontFamily; keys.fontSize = arguments[i].fontSize + 'px'; }
                 }
             }
             return keys;
